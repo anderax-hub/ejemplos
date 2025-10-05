@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda Monolítica</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f3f4f6; }
+    h1 { color: #047857; text-align: center; }
+    .productos { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .producto {
+      border: 1px solid #ccc; border-radius: 8px;
+      background: white; padding: 15px; width: 180px;
+      text-align: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .producto button {
+      background: #047857; color: white; border: none;
+      padding: 6px 10px; border-radius: 5px; cursor: pointer;
+    }
+    .producto button:hover { background: #065f46; }
+    #carrito {
+      margin-top: 30px; background: white; padding: 20px;
+      border-radius: 8px; max-width: 500px; margin-left: auto; margin-right: auto;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    }
+    #carrito h2 { color: #065f46; }
+    ul { list-style: none; padding: 0; }
+    li { border-bottom: 1px solid #ddd; padding: 5px 0; }
+    strong { color: #111; }
+  </style>
+</head>
+<body>
+  <h1>🛍️ Tienda Monolítica “TecnoShop”</h1>
+
+  <div class="productos">
+    <div class="producto">
+      <strong>Teclado Mecánico RGB</strong><br>
+      <span>Q250.00</span><br>
+      <button onclick="agregar('Teclado Mecánico RGB',250)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <strong>Mouse Gamer Inalámbrico</strong><br>
+      <span>Q180.00</span><br>
+      <button onclick="agregar('Mouse Gamer Inalámbrico',180)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <strong>Audífonos Bluetooth</strong><br>
+      <span>Q220.00</span><br>
+      <button onclick="agregar('Audífonos Bluetooth',220)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <strong>Monitor LED 24”</strong><br>
+      <span>Q900.00</span><br>
+      <button onclick="agregar('Monitor LED 24”',900)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <strong>Silla Ergonómica</strong><br>
+      <span>Q1,200.00</span><br>
+      <button onclick="agregar('Silla Ergonómica',1200)">Agregar</button>
+    </div>
+  </div>
+
+  <div id="carrito">
+    <h2>🛒 Carrito de Compras</h2>
+    <ul id="lista"></ul>
+    <p><strong>Total:</strong> Q<span id="total">0.00</span></p>
+  </div>
+
+  <script>
+    // "Datos" y lógica en el mismo archivo
+    let carrito = [];
+    let total = 0;
+
+    function agregar(nombre, precio){
+      carrito.push({nombre, precio});
+      total += precio;
+      render();
+    }
+
+    function render(){
+      document.getElementById("lista").innerHTML =
+        carrito.map(p => `<li>${p.nombre} - Q${p.precio.toFixed(2)}</li>`).join("");
+      document.getElementById("total").textContent = total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
